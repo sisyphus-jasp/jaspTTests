@@ -2265,7 +2265,7 @@
 
   if (is.null(container[["plotsRainCloud"]])) {
     subcontainer <- createJaspContainer(gettext("Raincloud Plots"))
-    subcontainer$dependOn(c("raincloudPlot", "raincloudPlotHorizontal"))
+    subcontainer$dependOn(c("raincloudPlot", "raincloudPlotHorizontal", "testValue"))
     subcontainer$position <- 6
     container[["plotsRainCloud"]] <- subcontainer
   } else {
@@ -2279,7 +2279,7 @@
       if(!is.null(subcontainer[[variable]]))
         next
       descriptivesPlotRainCloud <- createJaspPlot(title = variable, width = 480, height = 320)
-      descriptivesPlotRainCloud$dependOn(optionContainsValue = list(dependent = variable))
+      descriptivesPlotRainCloud$dependOn(c("testValue", optionContainsValue = list(dependent = variable)))
       subcontainer[[variable]] <- descriptivesPlotRainCloud
       if(!isFALSE(errors[[variable]])) {
         descriptivesPlotRainCloud$setError(errors[[variable]]$message)
